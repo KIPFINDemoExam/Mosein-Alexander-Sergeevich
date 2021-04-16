@@ -11,8 +11,8 @@ namespace CarService
     public static class DB
     {
         public static DirectoryInfo PhotoDirectory = new DirectoryInfo(@"..\..\Услуги автосервиса");
-        public static CarEntities db = new CarEntities();
-        public static Employee CurrentEmployee = new Employee();
+        public static Entities db = new Entities();
+        public static Employees CurrentEmployee = new Employees();
         public static ObservableCollection<T> ToObservableCollection<T>(this IEnumerable<T> collection)
         {
             var newcollection = new ObservableCollection<T>();

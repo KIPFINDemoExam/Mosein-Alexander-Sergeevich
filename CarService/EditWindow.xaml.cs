@@ -52,7 +52,7 @@ namespace CarService
             InitializeComponent();
             service = editservice;
             Mode = mode;
-            ExtraPhotoes = DB.db.ServicePhotoes.ToList();
+            ExtraPhotoes = DB.db.ServicePhoto.ToList();
             Images = new List<ExtraImage>();
             Pageservices = listServices;
             AddExtraPhotoes();
@@ -117,7 +117,7 @@ namespace CarService
         {
             if (Mode == AddEditMode.Edit)
             {
-                if (!(DB.db.Services.Where(it => it.Title.ToUpper() == service.Title.ToUpper()).Count() <= 1))
+                if (!(DB.db.Service.Where(it => it.Title.ToUpper() == service.Title.ToUpper()).Count() <= 1))
                 {
                     MessageBox.Show("Услуга с таким названием уже существует!", "Ошибка");
                     return;
@@ -125,8 +125,8 @@ namespace CarService
             }
             else
             {
-                if (DB.db.Services.All(it => it.Title.ToUpper() != service.Title.ToUpper()))
-                    DB.db.Services.Add(service);
+                if (DB.db.Service.All(it => it.Title.ToUpper() != service.Title.ToUpper()))
+                    DB.db.Service.Add(service);
                 else
                 {
                     MessageBox.Show("Услуга с таким названием уже существует!", "Ошибка");
@@ -135,13 +135,13 @@ namespace CarService
             }
             if (ExtraPhotoes != null)
             {
-                DB.db.ServicePhotoes.RemoveRange(DB.db.ServicePhotoes.ToList());
+                DB.db.ServicePhoto.RemoveRange(DB.db.ServicePhoto.ToList());
                 DB.db.SaveChanges();
-                DB.db.ServicePhotoes.AddRange(ExtraPhotoes);
+                DB.db.ServicePhoto.AddRange(ExtraPhotoes);
                 DB.db.SaveChanges();
                 ListServices.services = new List<ServicesInfo>();
                 ListServices.RewriteDataGrid(Pageservices);
-                ExtraPhotoes = DB.db.ServicePhotoes.ToList();
+                ExtraPhotoes = DB.db.ServicePhoto.ToList();
             }
         }
         public static Brush ConvertToBrush(string brush) => (Brush)new BrushConverter().ConvertFromString(brush);

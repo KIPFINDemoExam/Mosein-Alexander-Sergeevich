@@ -1,4 +1,4 @@
-﻿// Создание кода T4 для модели "C:\Users\Игорь\Downloads\CarService\CarService\CarService\Model.edmx" включено. 
+﻿// Создание кода T4 для модели "\\kip.college\dfs\Roaming\Redirection\175928\Downloads\Demo\Demo\CarService\CarService\CarService\Model1.edmx" включено. 
 // Чтобы включить формирование кода прежних версий, измените значение свойства "Стратегия создания кода" конструктора
 // на "Legacy ObjectContext". Это свойство доступно в окне "Свойства", если модель
 // открыта в конструкторе.

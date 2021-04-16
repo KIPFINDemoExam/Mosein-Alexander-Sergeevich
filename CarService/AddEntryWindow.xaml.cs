@@ -16,7 +16,7 @@ namespace CarService
         {
             InitializeComponent();
             servicesInfo = service;
-            var sourcecombo = DB.db.Clients.AsNoTracking().Select(it => it.LastName + " " + it.FirstName + " " + it.Patronymic).ToList();
+            var sourcecombo = DB.db.Client.AsNoTracking().Select(it => it.LastName + " " + it.FirstName + " " + it.Patronymic).ToList();
             ClientsCombo.ItemsSource = sourcecombo;
             DataContext = this;
         }
@@ -29,7 +29,7 @@ namespace CarService
             if (ClientsCombo.SelectedIndex != -1)
                 if (time != default)
                 {
-                    DB.db.ClientServices.Add(new ClientService
+                    DB.db.ClientService.Add(new ClientService
                     {
                         ClientID = ClientsCombo.SelectedIndex + 1,
                         ServiceID = servicesInfo.ID,

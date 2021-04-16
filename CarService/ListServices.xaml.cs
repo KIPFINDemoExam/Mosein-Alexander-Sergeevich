@@ -70,7 +70,7 @@ namespace CarService
             if (!Application.Current.Windows.OfType<EditWindow>().Any())
             {
                 ServicesInfo item = DataGridService.SelectedItems[0] as ServicesInfo;
-                var edititem = DB.db.Services.Where(it => it.ID == item.ID).First();
+                var edititem = DB.db.Service.Where(it => it.ID == item.ID).First();
                 var window = new EditWindow(edititem, AddEditMode.Edit, this);
                 window.Show();
             }
@@ -85,19 +85,19 @@ namespace CarService
             if (respond == MessageBoxResult.Yes)
             {
                 ServicesInfo item = DataGridService.SelectedItems[0] as ServicesInfo;
-                var removeitem = DB.db.Services.Where(it => it.ID == item.ID).First();
-                if (removeitem.ClientServices.Any())
+                var removeitem = DB.db.Service.Where(it => it.ID == item.ID).First();
+                if (removeitem.ClientService.Any())
                 {
                     MessageBox.Show("На данную услугу имеются записи");
                     return;
                 }
-                var countPhoto = removeitem.ServicePhotoes.Count;
+                var countPhoto = removeitem.ServicePhoto.Count;
                 for (int i = 0; i < countPhoto; i++)
                 {
-                    DB.db.ServicePhotoes.Remove(removeitem.ServicePhotoes.First());
+                    DB.db.ServicePhoto.Remove(removeitem.ServicePhoto.First());
                 }
                 DB.db.SaveChanges();
-                DB.db.Services.Remove(removeitem);
+                DB.db.Service.Remove(removeitem);
                 DB.db.SaveChanges();
                 RewriteDataGrid(this);
             }
@@ -158,14 +158,14 @@ namespace CarService
         private void AddEntryButton_Click(object sender, RoutedEventArgs e)
         {
             ServicesInfo item = DataGridService.SelectedItems[0] as ServicesInfo;
-            var edititem = DB.db.Services.Where(it => it.ID == item.ID).First();
+            var edititem = DB.db.Service.Where(it => it.ID == item.ID).First();
             var window = new AddEntryWindow(item);
             window.Show();
         }
         public static void RewriteDataGrid(ListServices page)
         {
             services = new List<ServicesInfo>();
-            DB.db.Services.ToList().ForEach(it =>
+            DB.db.Service.ToList().ForEach(it =>
 
                 services.Add(new ServicesInfo(it.ID, it.Title, (double)it.Cost, it.DurationInSeconds, (double)it.Discount, it.MainImagePath)
             ));

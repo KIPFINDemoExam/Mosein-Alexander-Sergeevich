@@ -17,8 +17,8 @@ namespace CarService
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.ProductPhotoes = new HashSet<ProductPhoto>();
-            this.ProductSales = new HashSet<ProductSale>();
+            this.ProductPhoto = new HashSet<ProductPhoto>();
+            this.ProductSale = new HashSet<ProductSale>();
         }
     
         public int ID { get; set; }
@@ -30,8 +30,8 @@ namespace CarService
         public Nullable<int> ManufacturerID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductPhoto> ProductPhotoes { get; set; }
+        public virtual ICollection<ProductPhoto> ProductPhoto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductSale> ProductSales { get; set; }
+        public virtual ICollection<ProductSale> ProductSale { get; set; }
     }
 }

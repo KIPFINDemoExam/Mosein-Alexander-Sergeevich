@@ -25,7 +25,7 @@ namespace CarService
         public Nullable<System.DateTime> Окончание_Аренды { get; set; }
         public string F10 { get; set; }
     
-        public virtual Employee Employee { get; set; }
-        public virtual Tenant Tenant { get; set; }
+        public virtual Employees Employees { get; set; }
+        public virtual Tenants Tenants { get; set; }
     }
 }

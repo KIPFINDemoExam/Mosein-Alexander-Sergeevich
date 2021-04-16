@@ -17,7 +17,7 @@ namespace CarService
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tag()
         {
-            this.Clients = new HashSet<Client>();
+            this.Client = new HashSet<Client>();
         }
     
         public int ID { get; set; }
@@ -25,6 +25,6 @@ namespace CarService
         public string Color { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Client> Clients { get; set; }
+        public virtual ICollection<Client> Client { get; set; }
     }
 }

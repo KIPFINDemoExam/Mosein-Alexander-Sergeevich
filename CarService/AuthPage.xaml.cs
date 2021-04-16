@@ -32,7 +32,7 @@ namespace CarService
                 return;
             }
 
-            using (var db = new CarEntities())
+            using (var db = new Entities())
             {
                 var employee = db.Employees.FirstOrDefault(it => it.Логин == TextBoxLogin.Text && it.Пароль == Pass.Password);
                 if (employee == null)

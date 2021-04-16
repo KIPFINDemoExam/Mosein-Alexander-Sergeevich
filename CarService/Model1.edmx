@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище SDVVAGModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AttachedProduct">
           <Key>
             <PropertyRef Name="MainProductID" />
@@ -75,7 +75,7 @@
           <Property Name="StartDate" Type="date" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
-предупреждение 6013: Первичный ключ в таблице или представлении "SDVVAG.dbo.Pavilions" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
+предупреждение 6013: Первичный ключ в таблице или представлении "MoseinA.dbo.Pavilions" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
         <EntityType Name="Pavilions">
           <Property Name="Название ТЦ" Type="nvarchar" MaxLength="255" />
           <Property Name="№ Павильона" Type="nvarchar" MaxLength="255" />
@@ -308,7 +308,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище SDVVAGModelContainer">
+        <EntityContainer Name="Хранилище ModelContainer">
           <EntitySet Name="AttachedProduct" EntityType="Self.AttachedProduct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClientService" EntityType="Self.ClientService" Schema="dbo" store:Type="Tables" />
@@ -374,7 +374,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="SDVVAGModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="AttachedProduct">
           <Key>
             <PropertyRef Name="MainProductID" />
@@ -397,8 +397,8 @@
           <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="GenderCode" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="PhotoPath" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ClientServices" Relationship="Self.FK_ClientService_Client" FromRole="Client" ToRole="ClientService" />
-          <NavigationProperty Name="Tags" Relationship="Self.TagOfClient" FromRole="Client" ToRole="Tag" />
+          <NavigationProperty Name="ClientService" Relationship="Self.FK_ClientService_Client" FromRole="Client" ToRole="ClientService" />
+          <NavigationProperty Name="Tag" Relationship="Self.TagOfClient" FromRole="Client" ToRole="Tag" />
         </EntityType>
         <EntityType Name="ClientService">
           <Key>
@@ -411,8 +411,8 @@
           <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Client" Relationship="Self.FK_ClientService_Client" FromRole="ClientService" ToRole="Client" />
           <NavigationProperty Name="Service" Relationship="Self.FK_ClientService_Service" FromRole="ClientService" ToRole="Service" />
-          <NavigationProperty Name="DocumentByServices" Relationship="Self.FK_DocumentByService_ClientService" FromRole="ClientService" ToRole="DocumentByService" />
-          <NavigationProperty Name="ProductSales" Relationship="Self.FK_ProductSale_ClientService" FromRole="ClientService" ToRole="ProductSale" />
+          <NavigationProperty Name="DocumentByService" Relationship="Self.FK_DocumentByService_ClientService" FromRole="ClientService" ToRole="DocumentByService" />
+          <NavigationProperty Name="ProductSale" Relationship="Self.FK_ProductSale_ClientService" FromRole="ClientService" ToRole="ProductSale" />
         </EntityType>
         <EntityType Name="DocumentByService">
           <Key>
@@ -423,7 +423,7 @@
           <Property Name="DocumentPath" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="ClientService" Relationship="Self.FK_DocumentByService_ClientService" FromRole="DocumentByService" ToRole="ClientService" />
         </EntityType>
-        <EntityType Name="Employee">
+        <EntityType Name="Employees">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -435,7 +435,7 @@
           <Property Name="Номер_телефона" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Пол" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Фото" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Rents" Relationship="Self.FK_Rent_Employees" FromRole="Employees" ToRole="Rent" />
+          <NavigationProperty Name="Rent" Relationship="Self.FK_Rent_Employees" FromRole="Employees" ToRole="Rent" />
         </EntityType>
         <EntityType Name="Gender">
           <Key>
@@ -463,8 +463,8 @@
           <Property Name="MainImagePath" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="ManufacturerID" Type="Int32" />
-          <NavigationProperty Name="ProductPhotoes" Relationship="Self.FK_ProductPhoto_Product" FromRole="Product" ToRole="ProductPhoto" />
-          <NavigationProperty Name="ProductSales" Relationship="Self.FK_ProductSale_Product" FromRole="Product" ToRole="ProductSale" />
+          <NavigationProperty Name="ProductPhoto" Relationship="Self.FK_ProductPhoto_Product" FromRole="Product" ToRole="ProductPhoto" />
+          <NavigationProperty Name="ProductSale" Relationship="Self.FK_ProductSale_Product" FromRole="Product" ToRole="ProductSale" />
         </EntityType>
         <EntityType Name="ProductPhoto">
           <Key>
@@ -501,8 +501,8 @@
           <Property Name="Начало_Аренды" Type="DateTime" Precision="3" />
           <Property Name="Окончание_Аренды" Type="DateTime" Precision="3" />
           <Property Name="F10" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_Rent_Employees" FromRole="Rent" ToRole="Employees" />
-          <NavigationProperty Name="Tenant" Relationship="Self.FK_Rent_Tenants" FromRole="Rent" ToRole="Tenants" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Rent_Employees" FromRole="Rent" ToRole="Employees" />
+          <NavigationProperty Name="Tenants" Relationship="Self.FK_Rent_Tenants" FromRole="Rent" ToRole="Tenants" />
         </EntityType>
         <EntityType Name="Service">
           <Key>
@@ -515,8 +515,8 @@
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Discount" Type="Double" />
           <Property Name="MainImagePath" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ClientServices" Relationship="Self.FK_ClientService_Service" FromRole="Service" ToRole="ClientService" />
-          <NavigationProperty Name="ServicePhotoes" Relationship="Self.FK_ServicePhoto_Service" FromRole="Service" ToRole="ServicePhoto" />
+          <NavigationProperty Name="ClientService" Relationship="Self.FK_ClientService_Service" FromRole="Service" ToRole="ClientService" />
+          <NavigationProperty Name="ServicePhoto" Relationship="Self.FK_ServicePhoto_Service" FromRole="Service" ToRole="ServicePhoto" />
         </EntityType>
         <EntityType Name="ServicePhoto">
           <Key>
@@ -534,9 +534,9 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Color" Type="String" MaxLength="6" FixedLength="true" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Clients" Relationship="Self.TagOfClient" FromRole="Tag" ToRole="Client" />
+          <NavigationProperty Name="Client" Relationship="Self.TagOfClient" FromRole="Tag" ToRole="Client" />
         </EntityType>
-        <EntityType Name="Tenant">
+        <EntityType Name="Tenants">
           <Key>
             <PropertyRef Name="ID_Арендатора" />
           </Key>
@@ -545,7 +545,7 @@
           <Property Name="Название_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Номер" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Адрес" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Rents" Relationship="Self.FK_Rent_Tenants" FromRole="Tenants" ToRole="Rent" />
+          <NavigationProperty Name="Rent" Relationship="Self.FK_Rent_Tenants" FromRole="Tenants" ToRole="Rent" />
         </EntityType>
         <Association Name="FK_ClientService_Client">
           <End Role="Client" Type="Self.Client" Multiplicity="1" />
@@ -596,7 +596,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Rent_Employees">
-          <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
           <End Role="Rent" Type="Self.Rent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employees">
@@ -632,7 +632,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Rent_Tenants">
-          <End Role="Tenants" Type="Self.Tenant" Multiplicity="1" />
+          <End Role="Tenants" Type="Self.Tenants" Multiplicity="1" />
           <End Role="Rent" Type="Self.Rent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tenants">
@@ -659,61 +659,61 @@
           <End Role="Client" Type="Self.Client" Multiplicity="*" />
           <End Role="Tag" Type="Self.Tag" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="CarEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AttachedProducts" EntityType="Self.AttachedProduct" />
-          <EntitySet Name="Clients" EntityType="Self.Client" />
-          <EntitySet Name="ClientServices" EntityType="Self.ClientService" />
-          <EntitySet Name="DocumentByServices" EntityType="Self.DocumentByService" />
-          <EntitySet Name="Employees" EntityType="Self.Employee" />
-          <EntitySet Name="Genders" EntityType="Self.Gender" />
-          <EntitySet Name="Manufacturers" EntityType="Self.Manufacturer" />
-          <EntitySet Name="Products" EntityType="Self.Product" />
-          <EntitySet Name="ProductPhotoes" EntityType="Self.ProductPhoto" />
-          <EntitySet Name="ProductSales" EntityType="Self.ProductSale" />
-          <EntitySet Name="Rents" EntityType="Self.Rent" />
-          <EntitySet Name="Services" EntityType="Self.Service" />
-          <EntitySet Name="ServicePhotoes" EntityType="Self.ServicePhoto" />
-          <EntitySet Name="Tags" EntityType="Self.Tag" />
-          <EntitySet Name="Tenants" EntityType="Self.Tenant" />
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AttachedProduct" EntityType="Self.AttachedProduct" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="ClientService" EntityType="Self.ClientService" />
+          <EntitySet Name="DocumentByService" EntityType="Self.DocumentByService" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" />
+          <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" />
+          <EntitySet Name="Product" EntityType="Self.Product" />
+          <EntitySet Name="ProductPhoto" EntityType="Self.ProductPhoto" />
+          <EntitySet Name="ProductSale" EntityType="Self.ProductSale" />
+          <EntitySet Name="Rent" EntityType="Self.Rent" />
+          <EntitySet Name="Service" EntityType="Self.Service" />
+          <EntitySet Name="ServicePhoto" EntityType="Self.ServicePhoto" />
+          <EntitySet Name="Tag" EntityType="Self.Tag" />
+          <EntitySet Name="Tenants" EntityType="Self.Tenants" />
           <AssociationSet Name="FK_ClientService_Client" Association="Self.FK_ClientService_Client">
-            <End Role="Client" EntitySet="Clients" />
-            <End Role="ClientService" EntitySet="ClientServices" />
+            <End Role="Client" EntitySet="Client" />
+            <End Role="ClientService" EntitySet="ClientService" />
           </AssociationSet>
           <AssociationSet Name="FK_ClientService_Service" Association="Self.FK_ClientService_Service">
-            <End Role="Service" EntitySet="Services" />
-            <End Role="ClientService" EntitySet="ClientServices" />
+            <End Role="Service" EntitySet="Service" />
+            <End Role="ClientService" EntitySet="ClientService" />
           </AssociationSet>
           <AssociationSet Name="FK_DocumentByService_ClientService" Association="Self.FK_DocumentByService_ClientService">
-            <End Role="ClientService" EntitySet="ClientServices" />
-            <End Role="DocumentByService" EntitySet="DocumentByServices" />
+            <End Role="ClientService" EntitySet="ClientService" />
+            <End Role="DocumentByService" EntitySet="DocumentByService" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductSale_ClientService" Association="Self.FK_ProductSale_ClientService">
-            <End Role="ClientService" EntitySet="ClientServices" />
-            <End Role="ProductSale" EntitySet="ProductSales" />
+            <End Role="ClientService" EntitySet="ClientService" />
+            <End Role="ProductSale" EntitySet="ProductSale" />
           </AssociationSet>
           <AssociationSet Name="FK_Rent_Employees" Association="Self.FK_Rent_Employees">
             <End Role="Employees" EntitySet="Employees" />
-            <End Role="Rent" EntitySet="Rents" />
+            <End Role="Rent" EntitySet="Rent" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductPhoto_Product" Association="Self.FK_ProductPhoto_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="ProductPhoto" EntitySet="ProductPhotoes" />
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductPhoto" EntitySet="ProductPhoto" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductSale_Product" Association="Self.FK_ProductSale_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="ProductSale" EntitySet="ProductSales" />
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductSale" EntitySet="ProductSale" />
           </AssociationSet>
           <AssociationSet Name="FK_Rent_Tenants" Association="Self.FK_Rent_Tenants">
             <End Role="Tenants" EntitySet="Tenants" />
-            <End Role="Rent" EntitySet="Rents" />
+            <End Role="Rent" EntitySet="Rent" />
           </AssociationSet>
           <AssociationSet Name="FK_ServicePhoto_Service" Association="Self.FK_ServicePhoto_Service">
-            <End Role="Service" EntitySet="Services" />
-            <End Role="ServicePhoto" EntitySet="ServicePhotoes" />
+            <End Role="Service" EntitySet="Service" />
+            <End Role="ServicePhoto" EntitySet="ServicePhoto" />
           </AssociationSet>
           <AssociationSet Name="TagOfClient" Association="Self.TagOfClient">
-            <End Role="Client" EntitySet="Clients" />
-            <End Role="Tag" EntitySet="Tags" />
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Tag" EntitySet="Tag" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -721,17 +721,17 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище SDVVAGModelContainer" CdmEntityContainer="CarEntities">
-          <EntitySetMapping Name="AttachedProducts">
-            <EntityTypeMapping TypeName="SDVVAGModel.AttachedProduct">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="AttachedProduct">
+            <EntityTypeMapping TypeName="Model.AttachedProduct">
               <MappingFragment StoreEntitySet="AttachedProduct">
                 <ScalarProperty Name="MainProductID" ColumnName="MainProductID" />
                 <ScalarProperty Name="AttachedProductID" ColumnName="AttachedProductID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Clients">
-            <EntityTypeMapping TypeName="SDVVAGModel.Client">
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="Model.Client">
               <MappingFragment StoreEntitySet="Client">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -746,8 +746,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ClientServices">
-            <EntityTypeMapping TypeName="SDVVAGModel.ClientService">
+          <EntitySetMapping Name="ClientService">
+            <EntityTypeMapping TypeName="Model.ClientService">
               <MappingFragment StoreEntitySet="ClientService">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ClientID" ColumnName="ClientID" />
@@ -757,8 +757,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DocumentByServices">
-            <EntityTypeMapping TypeName="SDVVAGModel.DocumentByService">
+          <EntitySetMapping Name="DocumentByService">
+            <EntityTypeMapping TypeName="Model.DocumentByService">
               <MappingFragment StoreEntitySet="DocumentByService">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ClientServiceID" ColumnName="ClientServiceID" />
@@ -767,7 +767,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="SDVVAGModel.Employee">
+            <EntityTypeMapping TypeName="Model.Employees">
               <MappingFragment StoreEntitySet="Employees">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ФИО" ColumnName="ФИО" />
@@ -780,16 +780,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Genders">
-            <EntityTypeMapping TypeName="SDVVAGModel.Gender">
+          <EntitySetMapping Name="Gender">
+            <EntityTypeMapping TypeName="Model.Gender">
               <MappingFragment StoreEntitySet="Gender">
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Manufacturers">
-            <EntityTypeMapping TypeName="SDVVAGModel.Manufacturer">
+          <EntitySetMapping Name="Manufacturer">
+            <EntityTypeMapping TypeName="Model.Manufacturer">
               <MappingFragment StoreEntitySet="Manufacturer">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -797,8 +797,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="SDVVAGModel.Product">
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="Model.Product">
               <MappingFragment StoreEntitySet="Product">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -810,8 +810,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProductPhotoes">
-            <EntityTypeMapping TypeName="SDVVAGModel.ProductPhoto">
+          <EntitySetMapping Name="ProductPhoto">
+            <EntityTypeMapping TypeName="Model.ProductPhoto">
               <MappingFragment StoreEntitySet="ProductPhoto">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
@@ -819,8 +819,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProductSales">
-            <EntityTypeMapping TypeName="SDVVAGModel.ProductSale">
+          <EntitySetMapping Name="ProductSale">
+            <EntityTypeMapping TypeName="Model.ProductSale">
               <MappingFragment StoreEntitySet="ProductSale">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
@@ -830,8 +830,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Rents">
-            <EntityTypeMapping TypeName="SDVVAGModel.Rent">
+          <EntitySetMapping Name="Rent">
+            <EntityTypeMapping TypeName="Model.Rent">
               <MappingFragment StoreEntitySet="Rent">
                 <ScalarProperty Name="ID_Аренды" ColumnName="ID Аренды" />
                 <ScalarProperty Name="ID_Арендатора" ColumnName="ID Арендатора" />
@@ -846,8 +846,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Services">
-            <EntityTypeMapping TypeName="SDVVAGModel.Service">
+          <EntitySetMapping Name="Service">
+            <EntityTypeMapping TypeName="Model.Service">
               <MappingFragment StoreEntitySet="Service">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -859,8 +859,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ServicePhotoes">
-            <EntityTypeMapping TypeName="SDVVAGModel.ServicePhoto">
+          <EntitySetMapping Name="ServicePhoto">
+            <EntityTypeMapping TypeName="Model.ServicePhoto">
               <MappingFragment StoreEntitySet="ServicePhoto">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
@@ -868,8 +868,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Tags">
-            <EntityTypeMapping TypeName="SDVVAGModel.Tag">
+          <EntitySetMapping Name="Tag">
+            <EntityTypeMapping TypeName="Model.Tag">
               <MappingFragment StoreEntitySet="Tag">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -878,7 +878,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tenants">
-            <EntityTypeMapping TypeName="SDVVAGModel.Tenant">
+            <EntityTypeMapping TypeName="Model.Tenants">
               <MappingFragment StoreEntitySet="Tenants">
                 <ScalarProperty Name="ID_Арендатора" ColumnName="ID Арендатора" />
                 <ScalarProperty Name="ID_Аренды" ColumnName="ID Аренды" />
@@ -888,7 +888,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="TagOfClient" TypeName="SDVVAGModel.TagOfClient" StoreEntitySet="TagOfClient">
+          <AssociationSetMapping Name="TagOfClient" TypeName="Model.TagOfClient" StoreEntitySet="TagOfClient">
             <EndProperty Name="Client">
               <ScalarProperty Name="ID" ColumnName="ClientID" />
             </EndProperty>
@@ -910,7 +910,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />

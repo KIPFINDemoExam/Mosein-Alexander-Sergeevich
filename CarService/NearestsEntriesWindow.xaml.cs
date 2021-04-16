@@ -49,8 +49,8 @@ namespace CarService
 
         private void GetEntries()
         {
-            DB.db = new CarEntities();
-            Entries = DB.db.ClientServices.ToList().Where(it => it.StartTime.Subtract(DateTime.Now).Days < 2 && it.StartTime.Subtract(DateTime.Now).Seconds >= 0).ToObservableCollection();
+            DB.db = new Entities();
+            Entries = DB.db.ClientService.ToList().Where(it => it.StartTime.Subtract(DateTime.Now).Days < 2 && it.StartTime.Subtract(DateTime.Now).Seconds >= 0).ToObservableCollection();
         }
     }
 }
