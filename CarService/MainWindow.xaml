@@ -9,6 +9,6 @@
         Height="450"
         Width="800">
     <Grid>
-        <Frame Source="ListServices.xaml"></Frame>
+        <Frame Source="StartPage.xaml" Navigated="Frame_Navigated"/>
     </Grid>
 </Window>

@@ -16,14 +16,19 @@ namespace CarService
     /// <summary>
     /// Логика взаимодействия для ListServices.xaml
     /// </summary>
-    public partial class ListServices : Page, INotifyPropertyChanged
+    public partial class ListServices : Page
     {
+        public static bool IsAdmin { get; set; }
         public static List<ServicesInfo> services { get; set; }
         public static int[] CountServices { get; set; }
         public ListServices()
         {
             InitializeComponent();
             services = new List<ServicesInfo>();
+            //if (DB.CurrentEmployee.Роль == "Администратор")
+            //    IsAdmin = true;
+            //else
+            //    IsAdmin = false;
             RewriteDataGrid(this);
             var discounts = new List<string>
             {
@@ -38,8 +43,6 @@ namespace CarService
             CurrentCount.Text = TotalCount.Text;
             DataContext = this;
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         private void DataGridService_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
@@ -178,6 +181,12 @@ namespace CarService
             AscendingRadio.IsChecked = false;
             DescendingRadio.IsChecked = false;
             SortByName.Text = null;
+        }
+
+        private void GoToNearestsEntries(object sender, RoutedEventArgs e)
+        {
+            var nearestsentrieswindow = new NearestsEntriesWindow();
+            nearestsentrieswindow.ShowDialog();
         }
     }
 }

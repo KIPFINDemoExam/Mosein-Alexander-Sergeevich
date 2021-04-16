@@ -10,6 +10,7 @@
         public int DurationInMinutes { get; set; }
         public double Discount { get; set; }
         public string MainImagePath { get; set; }
+
         public ServicesInfo(int iD, string title, double cost, int durationInSeconds, double discount, string mainImagePath)
         {
             ID = iD;

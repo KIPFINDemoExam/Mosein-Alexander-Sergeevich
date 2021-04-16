@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CarService"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="AddEntryWindow" Height="450" Width="800">
+        Title="Добавить запись на услугу" Height="450" Width="800">
     <Window.Resources>
         <Style TargetType="TextBlock" x:Key="blocksstyle">
             <Setter Property="Margin" Value="10"/>
@@ -14,6 +14,9 @@
         </Style>
         <Style TargetType="Label">
             <Setter Property="Margin" Value="20,0,0,0"/>
+        </Style>
+        <Style TargetType="TextBox" x:Key="TimeStyle">
+            <Setter Property="BorderThickness" Value="0"/>
         </Style>
     </Window.Resources>
     <StackPanel HorizontalAlignment="Center" Margin="232,32,183,0" Width="377">
@@ -24,7 +27,16 @@
         <Label HorizontalAlignment="Center">Запись</Label>
         <ComboBox Name="ClientsCombo" Margin="10" Width="200"/>
         <DatePicker x:Name="SetDate" Margin="10" Width="200"/>
-        <xctk:MaskedTextBox x:Name="SetTime" Mask="##:##"  Margin="10" Width="200" TextChanged="SetTime_TextChanged" PreviewTextInput="SetTime_PreviewTextInput"/>
-        <Button Style="{StaticResource ButtonsStyle}" Click="Button_Click">Записать</Button>
+        <Button Style="{StaticResource ButtonsStyle}" Click="SaveButton">Записать</Button>
+        <DockPanel HorizontalAlignment="Center" Width="200">
+            <TextBlock Text="Время" HorizontalAlignment="Left"/>
+            <Border BorderBrush="LightGray" BorderThickness="2"  Width="70">
+                <DockPanel  Width="70" >
+                    <TextBox HorizontalAlignment="Left"  Margin ="2,0,0,0" Style="{StaticResource TimeStyle}" PreviewTextInput="CheckInt" x:Name="Hours" TextChanged="Hours_TextChanged" Width="29" />
+                    <TextBlock  HorizontalAlignment="Center" Text=":" />
+                    <TextBox  Margin ="2,0,0,0" HorizontalAlignment="Right" Style="{StaticResource TimeStyle}" PreviewTextInput="CheckInt" x:Name="Minutes" TextChanged="Minutes_TextChanged" Width="34" />
+                </DockPanel>
+            </Border>
+        </DockPanel>
     </StackPanel>
 </Window>

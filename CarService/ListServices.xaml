@@ -6,7 +6,10 @@
       xmlns:local="clr-namespace:CarService"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ListServices" >
+      Title="Список услуг">
+    <Page.Resources>
+        <local:IsAdminConverter x:Key="IsAdminConvert"/>
+    </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -24,7 +27,21 @@
             </StackPanel>
             <ComboBox Margin="10" Grid.Column="1" x:Name="SortByDiscountCombo" SelectionChanged="SortByDiscountCombo_SelectionChanged"/>
             <Label Margin="10">Поиск по названию товара</Label>
-            <TextBox Margin="10" x:Name="SortByName" TextChanged="SortByName_TextChanged"></TextBox>
+            <TextBox Margin="10" x:Name="SortByName" TextChanged="SortByName_TextChanged"/>
+            <Button Content="Просмотреть ближайшие записи" Click="GoToNearestsEntries">
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource ButtonsStyle}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsAdmin}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsAdmin}" Value="False">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
         </StackPanel>
         <DataGrid x:Name="DataGridService"  IsReadOnly="True" GridLinesVisibility="None"  AutoGenerateColumns="False" BorderThickness="0" BorderBrush="White">
             <DataGrid.CellStyle>
@@ -53,11 +70,40 @@
                                             <Run x:Name="TextDiscount" Text="{Binding Discount}" />
                                             <Run Text="%" />
                                         </TextBlock>
-                                        <StackPanel Orientation="Horizontal" Height="40">
-                                            <Button Name="EditButton" Click="EditButton_Click"  Content="Редактировать" FontSize="8"  Margin="0,10,10,10" Style="{StaticResource ButtonRoundedCorner}"/>
-                                            <Button Name="DeleteButton" Click="DeleteButton_Click"  Content="Удалить"  Margin="0,10,10,10" FontSize="8" Style="{StaticResource ButtonRoundedCorner}"/>
-                                            <Button Name="AddEntryButton" Click="AddEntryButton_Click" Content="Записать клиента"  Width="70" Margin="0,10,10,10" FontSize="8" Style="{StaticResource ButtonRoundedCorner}"/>
-                                        </StackPanel>
+                                        <Control>
+                                            <Control.Resources>
+                                                <Style TargetType="Button" x:Key="EditButtonStyle" BasedOn="{StaticResource ButtonRoundedCorner}">
+                                                    <EventSetter Event="Click" Handler="EditButton_Click"/>
+                                                </Style>
+
+                                                <Style TargetType="Button" x:Key="DeleteButtonStyle" BasedOn="{StaticResource ButtonRoundedCorner}">
+                                                    <EventSetter Event="Click" Handler="DeleteButton_Click"/>
+                                                </Style>
+
+                                                <Style TargetType="Button" x:Key="AddEntryButtonStyle" BasedOn="{StaticResource ButtonRoundedCorner}">
+                                                    <EventSetter Event="Click" Handler="AddEntryButton_Click"/>
+                                                </Style>
+                                            </Control.Resources>
+                                            <Control.Style>
+                                                <Style TargetType="Control">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ID, Converter={StaticResource IsAdminConvert}}" Value="True">
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate>
+                                                                        <StackPanel  HorizontalAlignment="Center" Orientation="Horizontal" >
+                                                                            <Button Name="EditButton"  Content="Редактировать" FontSize="8"  Margin="0,10,10,10" Style="{StaticResource EditButtonStyle}"/>
+                                                                            <Button Name="DeleteButton" Content="Удалить"  Margin="0,10,10,10" FontSize="8" Style="{StaticResource DeleteButtonStyle}"/>
+                                                                            <Button Name="AddEntryButton" Content="Записать клиента"  Width="70" Margin="0,10,10,10" FontSize="8" Style="{StaticResource AddEntryButtonStyle}"/>
+                                                                        </StackPanel>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Control.Style>
+                                        </Control>
                                     </StackPanel>
                                 </StackPanel>
                             </Border>
@@ -74,7 +120,20 @@
                 <Run Text="из"/>
                 <Run x:Name="TotalCount"/>
             </TextBlock>
-            <Button Style="{StaticResource ButtonsStyle}" x:Name="AddService" Content="Добавить новую услугу" Click="AddService_Click"/>
+            <Button x:Name="AddService" Content="Добавить новую услугу" Click="AddService_Click">
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource ButtonsStyle}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsAdmin}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsAdmin}" Value="False">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
         </StackPanel>
     </Grid>
 </Page>

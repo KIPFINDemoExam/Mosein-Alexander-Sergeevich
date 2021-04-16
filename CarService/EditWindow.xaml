@@ -4,8 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarService"
-        mc:Ignorable="d"
-        Title="EditWindow" Height="540" Width="800" Loaded="Window_Loaded">
+        mc:Ignorable="d" Height="540" Width="800" Loaded="Window_Loaded">
+    <Window.Style>
+        <Style TargetType="Window">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Mode}" Value="Edit">
+                    <Setter Property="Title" Value="Редактирование услуги"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Mode}" Value="Add">
+                    <Setter Property="Title" Value="Добавление услуги"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Style>
     <Window.Resources>
         <Style TargetType="TextBox">
             <Setter Property="Margin" Value="10"/>

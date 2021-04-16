@@ -43,7 +43,9 @@ namespace CarService
                 else
                 {
                     MessageBox.Show("Пользователь успешно найден");
+                    DB.CurrentEmployee = employee;
                     NavigationService?.Navigate(new ListServices());
+
                 }
 
             }

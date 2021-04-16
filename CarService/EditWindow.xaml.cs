@@ -44,7 +44,7 @@ namespace CarService
         public List<ExtraImage> Images { get; set; } // дополнительные изображения этого элемента
         public List<ServicePhoto> ExtraPhotoes { get; set; } // дополнительные изображения всех элементов
         ExtraImage clickableimage;
-        public static AddEditMode Mode;
+        public static AddEditMode Mode { get; set; }
         public static Service service { get; set; }
         ListServices Pageservices { get; set; } // главная страница
         public EditWindow(Service editservice, AddEditMode mode, ListServices listServices)
@@ -56,6 +56,7 @@ namespace CarService
             Images = new List<ExtraImage>();
             Pageservices = listServices;
             AddExtraPhotoes();
+            DataContext = this;
         }
         void AddExtraPhotoes()
         {

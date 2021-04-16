@@ -16,20 +16,26 @@ using System.Windows.Shapes;
 namespace CarService
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для StartPage.xaml
     /// </summary>
-    /// 
-    public partial class MainWindow : Window
+    public partial class StartPage : Page
     {
-        public MainWindow()
+        public StartPage()
         {
             InitializeComponent();
         }
 
-        private void Frame_Navigated(object sender, NavigationEventArgs e)
+        private void UserMode(object sender, RoutedEventArgs e)
         {
-              if (e.Content is Page page)
-                Title = page.Title;
+           ListServices.IsAdmin = false;
+            NavigationService?.Navigate(new ListServices());
+        }
+
+        private void AdminMode(object sender, RoutedEventArgs e)
+        {
+            ListServices.IsAdmin = true;
+            NavigationService?.Navigate(new ListServices());
+
         }
     }
 }

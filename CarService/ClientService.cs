@@ -24,7 +24,9 @@ namespace CarService
         public int ID { get; set; }
         public int ClientID { get; set; }
         public int ServiceID { get; set; }
-        public System.DateTime StartTime { get; set; }
+        public DateTime StartTime { get; set; }
+        public TimeSpan TimeRemain { get => StartTime.Subtract(DateTime.Now);}
+
         public string Comment { get; set; }
     
         public virtual Client Client { get; set; }
