@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="70f2da38807e4e4082da3f32c415880d" Name="Diagram1">
+        <EntityTypeShape EntityType="SDVVAGModel.AttachedProduct" Width="1.5" PointX="7.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDVVAGModel.Client" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDVVAGModel.ClientService" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDVVAGModel.DocumentByService" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDVVAGModel.Employee" Width="1.5" PointX="5.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDVVAGModel.Gender" Width="1.5" PointX="7.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDVVAGModel.Manufacturer" Width="1.5" PointX="9.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDVVAGModel.Product" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDVVAGModel.ProductPhoto" Width="1.5" PointX="5.25" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDVVAGModel.ProductSale" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDVVAGModel.Rent" Width="1.5" PointX="8" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDVVAGModel.Service" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDVVAGModel.ServicePhoto" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDVVAGModel.Tag" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDVVAGModel.Tenant" Width="1.5" PointX="5.75" PointY="12.75" IsExpanded="true" />
+        <AssociationConnector Association="SDVVAGModel.FK_ClientService_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="SDVVAGModel.FK_ClientService_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="SDVVAGModel.FK_DocumentByService_ClientService" ManuallyRouted="false" />
+        <AssociationConnector Association="SDVVAGModel.FK_ProductSale_ClientService" ManuallyRouted="false" />
+        <AssociationConnector Association="SDVVAGModel.FK_Rent_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="SDVVAGModel.FK_ProductPhoto_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="SDVVAGModel.FK_ProductSale_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="SDVVAGModel.FK_Rent_Tenants" ManuallyRouted="false" />
+        <AssociationConnector Association="SDVVAGModel.FK_ServicePhoto_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="SDVVAGModel.TagOfClient" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
